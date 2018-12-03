@@ -1,4 +1,6 @@
 // server.js
+//Extraído de http://cangaceirojavascript.com.br/
+
 const express = require('express')
     , app = express()
     , fs = require('fs')
