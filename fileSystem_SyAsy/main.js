@@ -1,10 +1,17 @@
 var fs = require('fs');
 
-//Leitura assíncrona
+//Leitura assincrona
 
-fs.readFile('input.txt', function(err, data){
+fs.readFile('inputt.txt', function(err, data){
     if(err){
-        return(err.stack);
+        console.log(err.stack);
     }
-    console.log('Arquivo aberto: ' + data.toString());
+    console.log('arquivo aberto: ' + data.toString());
 });
+
+//Leitura síncrona
+
+var texto = fs.readFileSync('inputt.txt');
+
+console.log('Leitura síncrona: ' + texto.toString());
+console.log("fim");

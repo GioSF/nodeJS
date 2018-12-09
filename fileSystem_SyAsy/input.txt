@@ -1,2 +1,1 @@
-arquivo de entrada
-com qualquer conteúdo
+Deu certo?tece?o de fileSystem no nodeJS
