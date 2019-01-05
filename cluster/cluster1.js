@@ -2,6 +2,7 @@ const cluster = require('cluster');
 const http = require('http');
 const numCpus = require('os').cpus().length;
 
+
 if(cluster.isMaster){
 
     console.log(`Master ${process.pid} iniciado`);
