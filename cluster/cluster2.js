@@ -11,8 +11,12 @@ if(cluster.isMaster){
     //1. Este fork dispara o worker (no else)
     const worker = cluster.fork();
 
-    //5. O processo principal envia uma mensagem ao worker criado
-    worker.send(`Olá worker ${worker.id}, sou ${process.pid}, seu mestre.`);
+    //5. O processo principal envia uma mensagem em formato JSON ao worker criado
+    worker.send({
+      type: 'task',
+      from: 'master',
+      data: `Olá worker ${worker.id}, sou ${process.pid}, seu mestre.`
+    });
 
     
     //3. O processo principal recebe a mensagem do worker
@@ -28,12 +32,18 @@ if(cluster.isMaster){
     cluster.fork();    
   });
 
+  var wid, workersIds = [];
+
+  for(wid in cluster.workers){
+    console.log(wid);
+  }  
+
 } else {
 //Workers podem compartilhar uma única conexão tcp, neste caso um servidor http na porta 8000
 
 //6. Mensagem recebida do master
 cluster.worker.on('message', (msg) => {
-  console.log(`Mensagem recebida do master: ${msg}`);
+  console.log(`Mensagem recebida do master: ${msg.data}`);
 });
 
 //2. Este worker dispara a mensagem a seguir ao ter ser criado
