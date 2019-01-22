@@ -24,4 +24,3 @@ fs.rmdir('novoD', (err) => {
     console.log('Pasta apagada');
 
 });
-fs.
